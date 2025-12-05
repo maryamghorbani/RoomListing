@@ -1,11 +1,11 @@
-import { mockRooms } from "./data/sample";
+import { RoomList } from "./components/RoomList/RoomList";
+
 function App() {
-    return (
-        <div>
-            <h1>Room Listing</h1>
-            <pre>{JSON.stringify(mockRooms, null, 2)}</pre>
-        </div>
-    );
+  return (
+    <div style={{ padding: 20 }}>
+      <RoomList />
+    </div>
+  );
 }
 
 export default App;
