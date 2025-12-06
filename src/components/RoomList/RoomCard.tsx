@@ -1,4 +1,5 @@
 import type { Room } from "../../types/room";
+import { MediaViewer } from "./MediaViewer";
 
 interface RoomCardProps {
   room: Room;
@@ -18,7 +19,7 @@ export function RoomCard({ room }: RoomCardProps) {
       </p>
 
       <div style={{ background: "#eee", height: 150, marginTop: 10 }}>
-        Media placeholder
+        <MediaViewer media={room.media} />
       </div>
     </div>
   );

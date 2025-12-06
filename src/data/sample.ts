@@ -10,11 +10,11 @@ export const mockRooms: Room[] = [
     media: [
       {
         type: "video",
-        url: "https://example.com/videos/room-1.mp4",
+        url: "https://d1tf573zhz3zzy.cloudfront.net/data/content/videos/CantoTranscoded/720p/FLORINA+TOMA/aeovgf8t6p29h4cols95drrh3b.mp4",
       },
       {
         type: "image",
-        url: "https://example.com/images/room-1-1.jpg",
+        url: "https://d1tf573zhz3zzy.cloudfront.net/data/content/banners/hotel_banner_new.png",
       },
     ],
     variants: [
@@ -45,11 +45,11 @@ export const mockRooms: Room[] = [
     media: [
       {
         type: "image",
-        url: "https://example.com/images/room-2-1.jpg",
+        url: "https://d1tf573zhz3zzy.cloudfront.net/data/content/banners/hotel_banner_new.png",
       },
       {
         type: "image",
-        url: "https://example.com/images/room-2-2.jpg",
+        url: "https://d1tf573zhz3zzy.cloudfront.net/data/content/banners/hotel_banner_new.png",
       },
     ],
     variants: [
