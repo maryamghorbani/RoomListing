@@ -34,6 +34,20 @@ export const mockRooms: Room[] = [
         priceInfo: "Price for 1 night · Breakfast included",
         cancellationPolicy: "Partial refund if cancelled later",
       },
+      {
+        id: "room-1-var-3",
+        name: "Breakfast  not included",
+        price: 1450,
+        priceInfo: "Price for 1 night · Breakfast not included",
+        cancellationPolicy: "Partial refund if cancelled later",
+      },
+      {
+        id: "room-1-var-4",
+        name: "Full apartment",
+        price: 1250,
+        priceInfo: "Price for 1 night · Breakfast included",
+        cancellationPolicy: "Partial refund if cancelled later",
+      },
     ],
   },
   {
