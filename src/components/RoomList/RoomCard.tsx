@@ -1,5 +1,6 @@
 import type { Room } from "../../types/room";
 import { MediaViewer } from "./MediaViewer";
+import { VariantCard } from "./VariantCard";
 
 interface RoomCardProps {
   room: Room;
@@ -22,6 +23,17 @@ export function RoomCard({ room }: RoomCardProps) {
             </p>
 
             <MediaViewer media={room.media} />
+
+            <div className="mt-4 space-y-3">
+                {room.variants.slice(0, 2).map((variant) => (
+                    <VariantCard
+                        key={variant.id}
+                        variant={variant}
+                        capacity={room.capacity}
+                        bedType={room.bedType}
+                    />
+                ))}
+            </div>
         </article>
     );
 }
