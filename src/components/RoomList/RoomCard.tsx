@@ -6,21 +6,23 @@ interface RoomCardProps {
 }
 
 export function RoomCard({ room }: RoomCardProps) {
-  return (
-    <div style={{ border: "1px solid #ccc", padding: 16, marginBottom: 20 }}>
-      <h2>{room.name}</h2>
-      <p>{room.description}</p>
+    return (
+        <article className="mb-6 rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+            <h2 className="mb-2 text-xl font-semibold text-slate-900">
+                {room.name}
+            </h2>
 
-      <p>
-        <strong>Capacity:</strong> {room.capacity}
-      </p>
-      <p>
-        <strong>Bed type:</strong> {room.bedType}
-      </p>
+            <p className="mb-4 text-sm text-slate-600">{room.description}</p>
 
-      <div style={{ background: "#eee", height: 150, marginTop: 10 }}>
-        <MediaViewer media={room.media} />
-      </div>
-    </div>
-  );
+            <p className="text-sm text-slate-800">
+                <span className="font-semibold">Capacity:</span> {room.capacity}
+            </p>
+            <p className="mb-4 text-sm text-slate-800">
+                <span className="font-semibold">Bed type:</span> {room.bedType}
+            </p>
+
+            <MediaViewer media={room.media} />
+        </article>
+    );
 }
+

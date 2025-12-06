@@ -1,11 +1,13 @@
 import { RoomList } from "./components/RoomList/RoomList";
 
 function App() {
-  return (
-    <div style={{ padding: 20 }}>
-      <RoomList />
-    </div>
-  );
+    return (
+        <div className="min-h-screen bg-slate-50 flex justify-center px-4 py-8">
+            <div className="w-full max-w-5xl">
+                <RoomList />
+            </div>
+        </div>
+    );
 }
 
 export default App;

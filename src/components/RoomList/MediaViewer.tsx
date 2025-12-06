@@ -11,19 +11,19 @@ export function MediaViewer({ media }: MediaViewerProps) {
 
   if (primary.type === "video") {
     return (
-      <video
-        src={primary.url}
-        controls
-        style={{ width: "100%", maxHeight: 300, objectFit: "cover" }}
-      />
+        <video
+            src={primary.url}
+            controls
+            className="h-80 w-full rounded-lg object-cover"
+        />
     );
   }
 
   return (
-    <img
-      src={primary.url}
-      alt=""
-      style={{ width: "100%", maxHeight: 300, objectFit: "cover" }}
-    />
+      <img
+          src={primary.url}
+          alt=""
+          className="h-80 w-full rounded-lg object-cover"
+      />
   );
 }
