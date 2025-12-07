@@ -1,4 +1,4 @@
-import { mockRooms } from "../../data/sample";
+import { roomsFromSample } from "../../data/roomsFromSample.ts";
 import { RoomCard } from "./RoomCard";
 
 export function RoomList() {
@@ -8,8 +8,8 @@ export function RoomList() {
             Room Listing
         </h1>
         <ul>
-            {mockRooms.map((room) => (
-              <RoomCard key={room.id} room={room} />
+            {roomsFromSample.map((room, index) => (
+                <RoomCard key={`${room.id}-${index}`} room={room} />
             ))}
         </ul>
     </div>

@@ -23,11 +23,9 @@ export function VariantCard({ variant, capacity, bedType }: VariantCardProps) {
                         <p className="text-sm text-slate-700">{capacity}</p>
                     )}
                 </div>
+                <p className="text-xs text-slate-500">{variant.priceInfo}</p>
 
                 <div className="pt-2 space-y-1">
-                    <p className="text-xs text-slate-500 uppercase tracking-wide">
-                        Price for 1 night
-                    </p>
 
                     <div className="flex items-baseline gap-3">
                         {variant.originalPrice && (
@@ -47,7 +45,6 @@ export function VariantCard({ variant, capacity, bedType }: VariantCardProps) {
                         )}
                     </div>
 
-                    <p className="text-xs text-slate-500">{variant.priceInfo}</p>
                 </div>
 
                 <button

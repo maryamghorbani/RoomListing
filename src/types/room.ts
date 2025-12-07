@@ -18,9 +18,8 @@ export interface RoomVariant {
 export interface Room {
   id: string;
   name: string;
-  description: string;
   capacity?: string;
   bedType?: string;
-  media: RoomMedia[];     
+  media: RoomMedia[];
   variants: RoomVariant[];
 }
