@@ -13,9 +13,10 @@ export function RoomVideoPlayer({ url }: RoomVideoPlayerProps) {
         const videoEl = videoRef.current;
         if (!container || !videoEl) return;
 
-        // Enable autoplay
         videoEl.muted = true;
         videoEl.playsInline = true;
+
+        let hasLoaded = false;
 
         const observer = new IntersectionObserver(
             (entries) => {
@@ -23,9 +24,13 @@ export function RoomVideoPlayer({ url }: RoomVideoPlayerProps) {
                 if (!videoEl) return;
 
                 if (entry.isIntersecting) {
-                    videoEl
-                        .play()
-                        .catch(() => {});
+                    if (!hasLoaded) {
+                        videoEl.src = url;
+                        videoEl.load();
+                        hasLoaded = true;
+                    }
+
+                    videoEl.play().catch(() => {});
                 } else {
                     videoEl.pause();
                 }
@@ -48,7 +53,6 @@ export function RoomVideoPlayer({ url }: RoomVideoPlayerProps) {
         <div ref={containerRef} className="h-80 w-full overflow-hidden rounded-lg">
             <video
                 ref={videoRef}
-                src={url}
                 controls
                 className="h-full w-full object-cover"
             />

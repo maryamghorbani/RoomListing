@@ -22,6 +22,7 @@ export function MediaViewer({ media }: MediaViewerProps) {
             src={images[0].url}
             alt=""
             className="h-80 w-full rounded-lg object-cover"
+            loading="lazy"
         />
     );
   }

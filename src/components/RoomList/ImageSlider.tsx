@@ -20,9 +20,9 @@ export function ImageSlider({ images }: ImageSliderProps) {
                 src={current.url}
                 alt=""
                 className="h-full w-full object-cover"
+                loading="lazy"
             />
 
-            {/* دکمه‌های قبلی/بعدی ساده */}
             <button
                 type="button"
                 onClick={goPrev}
@@ -38,7 +38,6 @@ export function ImageSlider({ images }: ImageSliderProps) {
                 ›
             </button>
 
-            {/* نقطه‌ها پایین تصویر */}
             <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1">
                 {images.map((img, i) => (
                     <button
