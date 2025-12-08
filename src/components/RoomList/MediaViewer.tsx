@@ -1,3 +1,4 @@
+import { memo } from "react";
 import type { RoomMedia } from "../../types/room";
 import { ImageMedia } from "./ImageMedia";
 import { VideoMedia } from "./VideoMedia";
@@ -7,7 +8,7 @@ interface MediaViewerProps {
   alt?: string;
 }
 
-export function MediaViewer({ media, alt }: MediaViewerProps) {
+function MediaViewerComponent({ media, alt }: MediaViewerProps) {
   const primary = media[0];
   if (!primary) return null;
 
@@ -19,3 +20,5 @@ export function MediaViewer({ media, alt }: MediaViewerProps) {
 
   return <VideoMedia url={primary.url} />;
 }
+
+export const MediaViewer = memo(MediaViewerComponent);
