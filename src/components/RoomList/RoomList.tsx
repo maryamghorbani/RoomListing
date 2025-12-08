@@ -55,9 +55,12 @@ export function RoomList() {
 
       <ul className="space-y-4">
         {visibleRooms.map((room, index) => (
-          <RoomCard key={`${room.id}-${index}`} room={room} />
+            <li key={`${room.id}-${index}`}>
+              <RoomCard room={room} />
+            </li>
         ))}
       </ul>
+
 
       {hasMore && <div ref={sentinelRef} className="h-10" aria-hidden="true" />}
     </section>

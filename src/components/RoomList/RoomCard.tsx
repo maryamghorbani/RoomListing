@@ -15,11 +15,13 @@ export function RoomCard({ room }: RoomCardProps) {
         ? room.variants
         : room.variants.slice(0, 2);
 
+    const variantsId = `room-${room.id}-variants`;
+
     return (
         <article className="mb-6 rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-            <MediaViewer media={room.media} />
+            <MediaViewer media={room.media} alt={room.name} />
 
-            <div className="mt-4 space-y-3">
+            <div id={variantsId} className="mt-4 space-y-3">
                 {visibleVariants.map((variant) => (
                     <VariantCard
                         key={variant.id}
@@ -34,6 +36,8 @@ export function RoomCard({ room }: RoomCardProps) {
                     type="button"
                     className="mt-2 text-sm font-semibold text-emerald-700 hover:text-emerald-800"
                     onClick={() => setIsExpanded((prev) => !prev)}
+                    aria-expanded={isExpanded}
+                    aria-controls={variantsId}
                 >
                     {isExpanded ? "Click to see less" : "Click to see more"}
                 </button>

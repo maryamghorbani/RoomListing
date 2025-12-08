@@ -3,9 +3,10 @@ import { Skeleton } from "../common/Skeleton";
 
 interface ImageMediaProps {
     url: string;
+    alt?: string;
 }
 
-export function ImageMedia({ url }: ImageMediaProps) {
+export function ImageMedia({ url, alt }: ImageMediaProps) {
     const [isLoaded, setIsLoaded] = useState(false);
 
     return (
@@ -18,7 +19,7 @@ export function ImageMedia({ url }: ImageMediaProps) {
                 onLoad={() => setIsLoaded(true)}
                 onError={() => setIsLoaded(true)}
                 className="h-full w-full object-cover"
-                alt=""
+                alt={alt ?? ""}
             />
         </div>
     );
