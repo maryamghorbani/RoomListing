@@ -1,3 +1,4 @@
+import { memo } from "react";
 import type { RoomVariant } from "../../types/room";
 
 type VariantCardProps = {
@@ -6,7 +7,7 @@ type VariantCardProps = {
     bedType?: string;
 };
 
-export function VariantCard({ variant, capacity, bedType }: VariantCardProps) {
+function VariantCardComponent({ variant, capacity, bedType }: VariantCardProps) {
     return (
         <div className="mt-4 rounded-2xl border border-emerald-500 bg-white shadow-sm overflow-hidden">
             <div className="px-5 py-4 space-y-2">
@@ -64,3 +65,6 @@ export function VariantCard({ variant, capacity, bedType }: VariantCardProps) {
         </div>
     );
 }
+
+export const VariantCard = memo(VariantCardComponent);
+
