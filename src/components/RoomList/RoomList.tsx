@@ -3,7 +3,7 @@ import { useInfiniteRooms } from "../../hooks/useInfiniteRooms";
 import { RoomCard } from "./RoomCard";
 
 export function RoomList() {
-  const { visibleRooms, hasMore, sentinelRef } =
+  const { visibleRooms, hasMore, sentinelRef, isLoadingMore } =
       useInfiniteRooms(roomsFromSample, 10);
 
   return (
@@ -19,6 +19,12 @@ export function RoomList() {
         </ul>
 
         {hasMore && <div ref={sentinelRef} className="h-10" aria-hidden="true" />}
+
+        {isLoadingMore && (
+            <div className="py-4 text-center text-sm text-slate-500">
+              Loading more rooms…
+            </div>
+        )}
       </section>
   );
 }
