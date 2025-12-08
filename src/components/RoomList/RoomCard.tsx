@@ -1,21 +1,27 @@
+import { memo, useMemo, useState } from "react";
 import type { Room } from "../../types/room";
 import { MediaViewer } from "./MediaViewer";
 import { VariantCard } from "./VariantCard";
-import { useState } from "react";
-
 
 interface RoomCardProps {
-  room: Room;
+    room: Room;
 }
 
-export function RoomCard({ room }: RoomCardProps) {
+function RoomCardComponent({ room }: RoomCardProps) {
     const [isExpanded, setIsExpanded] = useState(false);
-    const hasMoreVariants = room.variants.length > 2;
-    const visibleVariants = isExpanded
-        ? room.variants
-        : room.variants.slice(0, 2);
 
     const variantsId = `room-${room.id}-variants`;
+
+    const { visibleVariants, hasMoreVariants } = useMemo(() => {
+        const total = room.variants.length;
+        const hasMore = total > 2;
+
+        return {
+            hasMoreVariants: hasMore,
+            visibleVariants:
+                isExpanded || !hasMore ? room.variants : room.variants.slice(0, 2),
+        };
+    }, [room.variants, isExpanded]);
 
     return (
         <article className="mb-6 rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
@@ -46,3 +52,4 @@ export function RoomCard({ room }: RoomCardProps) {
     );
 }
 
+export const RoomCard = memo(RoomCardComponent);
