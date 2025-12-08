@@ -1,5 +1,6 @@
 import type { RoomMedia } from "../../types/room";
 import { ImageSlider } from "./ImageSlider";
+import { RoomVideoPlayer } from "./RoomVideoPlayer";
 
 type MediaViewerProps = {
   media: RoomMedia[];
@@ -12,13 +13,7 @@ export function MediaViewer({ media }: MediaViewerProps) {
   const images = media.filter((m) => m.type === "image");
 
   if (video) {
-    return (
-        <video
-            src={video.url}
-            controls
-            className="h-80 w-full rounded-lg object-cover"
-        />
-    );
+    return <RoomVideoPlayer url={video.url} />;
   }
 
   if (images.length === 1) {
