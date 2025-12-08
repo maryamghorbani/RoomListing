@@ -27,7 +27,7 @@ export function VideoMedia({ url }: VideoMediaProps) {
                     if (!videoEl.src) {
                         videoEl.src = url;
                     }
-                    void videoEl.play();
+                    videoEl.play().catch(() => {});
                 } else {
                     videoEl.pause();
                 }
