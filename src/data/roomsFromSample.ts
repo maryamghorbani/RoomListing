@@ -1,12 +1,9 @@
 import raw from "./sample.json";
+
 import type { Room, RoomMedia, RoomVariant } from "../types/room";
+import type { RawSample, RawRoom, RawVariant } from "./rawSampleTypes";
 
-// raw data types
-type Raw = typeof raw;
-type RawRoom = Raw["rooms_by_serial_no"][number]["rooms"][number];
-type RawVariant = RawRoom["variants"][number];
-
-// --- Helper functions ---
+const rawData = raw as RawSample;
 
 function mapBedType(rawBed?: string | null): string {
     if (!rawBed) return "Bed";
@@ -24,20 +21,13 @@ function mapBedType(rawBed?: string | null): string {
 
 // Media mapping logic: video first, then images
 function mapMedia(room: RawRoom): RoomMedia[] {
-    // 1) If video_url exists, use it
-    const videoUrl: string | undefined = room.properties?.video_url?.med;
+    const videoUrl: string | undefined | null = room.properties?.video_url?.med;
     if (videoUrl) {
-        return [
-            {
-                type: "video",
-                url: videoUrl,
-            },
-        ];
+        return [{ type: "video", url: videoUrl }];
     }
 
-    // 2) If room_images exist, get all image_urls
     const roomImages = room.properties?.room_images ?? [];
-    const imageUrls: string[] = roomImages.flatMap((img: any) => img.image_urls ?? []);
+    const imageUrls: string[] = roomImages.flatMap((img) => img.image_urls ?? []);
 
     if (imageUrls.length > 0) {
         return imageUrls.map((url) => ({
@@ -46,7 +36,6 @@ function mapMedia(room: RawRoom): RoomMedia[] {
         }));
     }
 
-    // 3) No video or images → empty media array
     return [];
 }
 
@@ -65,7 +54,9 @@ function mapVariant(v: RawVariant): RoomVariant {
 
     let discountPercent: number | undefined;
     if (originalPrice && originalPrice > price) {
-        discountPercent = Math.round(((originalPrice - price) / originalPrice) * 100);
+        discountPercent = Math.round(
+            ((originalPrice - price) / originalPrice) * 100
+        );
     }
 
     const cancellationPolicy =
@@ -79,13 +70,11 @@ function mapVariant(v: RawVariant): RoomVariant {
         price,
         originalPrice,
         discountPercent,
-        // Note: This text usually includes "Price for 1 night ..."
         priceInfo: v.price_info ?? "Price for 1 night",
         cancellationPolicy: cancellationPolicy.trim(),
     };
 }
 
-// Capacity: "Up to X adults"
 function mapCapacity(room: RawRoom): string {
     const cap = room.properties?.room_capacity;
     const maxAdult = cap?.max_adult ?? cap?.max_occupancy;
@@ -95,11 +84,8 @@ function mapCapacity(room: RawRoom): string {
     return "Up to 2 adults";
 }
 
-// --- Main mapping ---
+const rawRooms: RawRoom[] = rawData.rooms_by_serial_no?.[0]?.rooms ?? [];
 
-const rawRooms: RawRoom[] = raw.rooms_by_serial_no[0].rooms;
-
-// This is not a hook, just mapped data
 export const roomsFromSample: Room[] = rawRooms.map((room, index) => ({
     id: room.room_type_code ?? String(index),
     name: room.name,
