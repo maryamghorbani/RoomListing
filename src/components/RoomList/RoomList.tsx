@@ -1,12 +1,13 @@
 import { roomsFromSample } from '@/data/roomsFromSample';
 import { useInfiniteRooms } from '@/hooks/useInfiniteRooms';
+import { PAGINATION } from '@/constants/ui';
 import { RoomCard } from './RoomCard';
 
 export function RoomList() {
   const hasData = Array.isArray(roomsFromSample) && roomsFromSample.length > 0;
 
   const { visibleRooms, hasMore, sentinelRef, isLoadingMore } =
-    useInfiniteRooms(roomsFromSample, 10);
+    useInfiniteRooms(roomsFromSample, PAGINATION.DEFAULT_PAGE_SIZE);
 
   if (!hasData) {
     return (

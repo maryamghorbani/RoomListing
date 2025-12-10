@@ -1,13 +1,14 @@
 import { hotelDetails } from '@/data/roomsFromSample';
 import { useEffect, useState } from 'react';
+import { APP_NAME, DEFAULT_PAGE_TITLE } from '@/constants/app';
 
 export function HotelHeader() {
   useEffect(() => {
     if (!hotelDetails?.name) return;
-    document.title = `${hotelDetails.name} – Unravel Travel Explorium`;
+    document.title = `${hotelDetails.name} – ${APP_NAME}`;
 
     return () => {
-      document.title = 'Unravel – Travel Explorium';
+      document.title = DEFAULT_PAGE_TITLE;
     };
   }, []);
 

@@ -1,13 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import type { Room } from '@/types/room';
-
-const DEFAULT_PAGE_SIZE = 10;
+import { PAGINATION } from '@/constants/ui';
 
 export function useInfiniteRooms(
   allRooms: Room[],
-  pageSize = DEFAULT_PAGE_SIZE,
+  pageSize = PAGINATION.DEFAULT_PAGE_SIZE,
 ) {
-  const [visibleCount, setVisibleCount] = useState(pageSize);
+  const [visibleCount, setVisibleCount] = useState<number>(pageSize);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
 
   const sentinelRef = useRef<HTMLDivElement | null>(null);
@@ -37,13 +36,13 @@ export function useInfiniteRooms(
             );
             setIsLoadingMore(false);
             loadingMore = false;
-          }, 400);
+          }, PAGINATION.LOAD_MORE_DELAY);
         }
       },
       {
         root: null,
-        rootMargin: '200px',
-        threshold: 0.1,
+        rootMargin: PAGINATION.INTERSECTION_ROOT_MARGIN,
+        threshold: PAGINATION.INTERSECTION_THRESHOLD,
       },
     );
 
