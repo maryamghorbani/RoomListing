@@ -28,7 +28,10 @@ function RoomCardComponent({ room }: RoomCardProps) {
     <article className="mb-4 sm:mb-6 rounded-lg sm:rounded-xl border border-slate-200 bg-white p-4 sm:p-6 shadow-sm">
       <MediaViewer media={room.media} alt={room.name} />
 
-      <div id={variantsId} className="mt-4 space-y-3">
+      <div
+        id={variantsId}
+        className="mt-4 space-y-3 transition-all duration-300 ease-in-out overflow-hidden"
+      >
         {visibleVariants.map((variant) => (
           <VariantCard
             key={variant.id}
@@ -41,7 +44,7 @@ function RoomCardComponent({ room }: RoomCardProps) {
       {hasMoreVariants && (
         <button
           type="button"
-          className="mt-2 text-sm font-semibold text-emerald-700 hover:text-emerald-800"
+          className="mt-2 text-sm font-semibold text-emerald-700 hover:text-emerald-800 transition-colors"
           onClick={() => setIsExpanded((prev) => !prev)}
           aria-expanded={isExpanded}
           aria-controls={variantsId}

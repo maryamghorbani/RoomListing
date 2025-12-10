@@ -5,10 +5,6 @@ export const PAGINATION = {
   INTERSECTION_THRESHOLD: 0.1,
 } as const;
 
-export const ANIMATION = {
-  EXPAND_DURATION: 300,
-} as const;
-
 export const TEXT = {
   DESCRIPTION_TRUNCATE_LENGTH: 220,
 } as const;
