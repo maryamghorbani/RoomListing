@@ -1,8 +1,10 @@
-import { hotelDetails } from '@/data/roomsFromSample';
+import { getHotelDetails } from '@/services/roomService';
 import { useEffect, useState } from 'react';
 import { APP_NAME, DEFAULT_PAGE_TITLE } from '@/constants/app';
 
 export function HotelHeader() {
+  const hotelDetails = getHotelDetails();
+
   useEffect(() => {
     if (!hotelDetails?.name) return;
     document.title = `${hotelDetails.name} – ${APP_NAME}`;
@@ -10,7 +12,7 @@ export function HotelHeader() {
     return () => {
       document.title = DEFAULT_PAGE_TITLE;
     };
-  }, []);
+  }, [hotelDetails?.name]);
 
   const img = hotelDetails.images?.[0];
 
