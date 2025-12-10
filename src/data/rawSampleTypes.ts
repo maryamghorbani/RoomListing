@@ -1,3 +1,28 @@
+export interface RawHotelImageSizes {
+    square?: string | null;
+    portrait?: string | null;
+    landscape?: string | null;
+    thumbnail?: string | null;
+    fullscreen?: string | null;
+}
+
+export interface RawHotelImage {
+    twoX?: RawHotelImageSizes | null;
+    threeX?: RawHotelImageSizes | null;
+}
+
+export interface RawHotelAddress {
+    city?: string;
+    country?: string;
+}
+
+export interface RawHotelDetails {
+    name: string;
+    address?: RawHotelAddress;
+    description?: string;
+    images?: RawHotelImage[] | null;
+}
+
 export interface RawVideoUrl {
     med?: string | null;
 }
@@ -46,6 +71,7 @@ export interface RawRoom {
 }
 
 export interface RawSample {
+    hotel_details: RawHotelDetails;
     rooms_by_serial_no: {
         rooms: RawRoom[];
     }[];

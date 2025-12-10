@@ -1,9 +1,16 @@
 import raw from "./sample.json";
 
 import type { Room, RoomMedia, RoomVariant } from "../types/room";
-import type { RawSample, RawRoom, RawVariant } from "./rawSampleTypes";
+import type {
+    RawSample,
+    RawRoom,
+    RawVariant,
+    RawHotelDetails,
+} from "./rawSampleTypes";
 
 const rawData = raw as RawSample;
+
+export const hotelDetails: RawHotelDetails = rawData.hotel_details;
 
 function mapBedType(rawBed?: string | null): string {
     if (!rawBed) return "Bed";

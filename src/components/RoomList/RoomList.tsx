@@ -8,15 +8,15 @@ export function RoomList() {
 
   return (
       <section className="mx-auto max-w-3xl py-6">
-        <h1 className="mb-6 text-2xl font-semibold">Room Listing</h1>
+          <h1 className="mb-6 text-2xl font-semibold">Room Listing</h1>
 
-        <ul className="space-y-4">
-          {visibleRooms.map((room, index) => (
-              <li key={`${room.id}-${index}`}>
-                <RoomCard room={room} />
-              </li>
-          ))}
-        </ul>
+          <ul className="space-y-4">
+              {visibleRooms.map((room, index) => (
+                  <li key={`${room.id}-${index}`}>
+                    <RoomCard room={room} />
+                  </li>
+              ))}
+          </ul>
 
         {hasMore && <div ref={sentinelRef} className="h-10" aria-hidden="true" />}
 
