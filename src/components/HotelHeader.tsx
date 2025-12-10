@@ -1,7 +1,18 @@
 import { hotelDetails } from "../data/roomsFromSample";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 export function HotelHeader() {
+
+    useEffect(() => {
+        if (!hotelDetails?.name) return;
+
+        document.title = `${hotelDetails.name} – Unravel Travel Explorium`;
+
+        return () => {
+            document.title = "Unravel – Travel Explorium";
+        };
+    }, []);
+
     const img = hotelDetails.images?.[0];
 
     const [expanded, setExpanded] = useState(false);
