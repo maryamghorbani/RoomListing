@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Skeleton } from '../common/Skeleton';
+import { Skeleton } from '@/components/common/Skeleton';
 
 interface VideoMediaProps {
   url: string;

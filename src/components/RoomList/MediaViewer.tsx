@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import type { RoomMedia } from '../../types/room';
+import type { RoomMedia } from '@/types/room';
 import { ImageMedia } from './ImageMedia';
 import { VideoMedia } from './VideoMedia';
 

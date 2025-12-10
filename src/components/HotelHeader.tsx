@@ -1,4 +1,4 @@
-import { hotelDetails } from '../data/roomsFromSample';
+import { hotelDetails } from '@/data/roomsFromSample';
 import { useEffect, useState } from 'react';
 
 export function HotelHeader() {

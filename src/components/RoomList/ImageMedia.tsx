@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Skeleton } from '../common/Skeleton';
-import type { RoomMedia } from '../../types/room';
+import { Skeleton } from '@/components/common/Skeleton';
+import type { RoomMedia } from '@/types/room';
 import { ImageSlider } from './ImageSlider';
 
 interface ImageMediaProps {

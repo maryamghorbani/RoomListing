@@ -1,5 +1,5 @@
 import { memo, useMemo, useState } from 'react';
-import type { Room } from '../../types/room';
+import type { Room } from '@/types/room';
 import { MediaViewer } from './MediaViewer';
 import { VariantCard } from './VariantCard';
 

@@ -1,6 +1,6 @@
 import raw from './sample.json';
 
-import type { Room, RoomMedia, RoomVariant } from '../types/room';
+import type { Room, RoomMedia, RoomVariant } from '@/types/room';
 import type {
   RawSample,
   RawRoom,

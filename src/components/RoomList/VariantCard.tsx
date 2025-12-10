@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import type { RoomVariant } from '../../types/room';
+import type { RoomVariant } from '@/types/room';
 
 type VariantCardProps = {
   variant: RoomVariant;

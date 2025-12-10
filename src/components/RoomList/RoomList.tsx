@@ -1,5 +1,5 @@
-import { roomsFromSample } from '../../data/roomsFromSample';
-import { useInfiniteRooms } from '../../hooks/useInfiniteRooms';
+import { roomsFromSample } from '@/data/roomsFromSample';
+import { useInfiniteRooms } from '@/hooks/useInfiniteRooms';
 import { RoomCard } from './RoomCard';
 
 export function RoomList() {

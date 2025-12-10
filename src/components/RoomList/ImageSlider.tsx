@@ -1,4 +1,4 @@
-import type { RoomMedia } from '../../types/room';
+import type { RoomMedia } from '@/types/room';
 import { useState } from 'react';
 
 type ImageSliderProps = {

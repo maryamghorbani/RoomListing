@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import type { Room } from '../types/room';
+import type { Room } from '@/types/room';
 
 const DEFAULT_PAGE_SIZE = 10;
 
