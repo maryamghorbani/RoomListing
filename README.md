@@ -1,111 +1,105 @@
 # Hotel Room Listing Application
 
-A modern, performant hotel room listing application built with React, TypeScript, and Tailwind CSS. Features infinite scroll pagination, media galleries, and responsive design optimized for browsing hotel rooms and their variants.
+A modern hotel room listing interface built with React, TypeScript, and Tailwind CSS.
+The project demonstrates clean architecture, scalable component design, efficient data handling, and modern testing practices.
 
-## Features
+## 🎯 Project Overview
 
-- 🏨 Browse hotel rooms with detailed information
-- 🖼️ Media galleries with image sliders and video support
-- 💰 Multiple room variants with pricing and discount information
-- ♾️ Infinite scroll pagination for smooth browsing
-- 📱 Fully responsive design
-- ⚡ Performance optimized with lazy loading and memoization
-- ♿ Accessibility-compliant components
+Users can browse hotel rooms with:
 
-## Tech Stack
+- **Multiple booking variants** 
+- **Image & video media galleries**
+- **Infinite scroll pagination**
+- **Responsive design optimized for mobile & desktop** 
 
-- **React 19.2** - UI framework with latest features
-- **TypeScript 5.9** - Type-safe development
-- **Vite 7.2** - Fast build tool and dev server with HMR
-- **Tailwind CSS 3.4** - Utility-first styling
-- **ESLint + Prettier** - Code quality and formatting
+The goal was to implement a production-quality UI with clean architecture and strong type safety.
 
-## Getting Started
+
+### ✨ Key Features
+
+- 🔄 **Infinite Scroll Pagination** (Intersection Observer)
+- 🖼️ **Room Media Galleries** (Images + Video support)
+- 💰 **Variants with pricing, discounts, cancellation policies** 
+- 📱 **Responsive Design** 
+- ⚡ **Performance optimized** with memoization & lazy loading
+- 🔒 **TypeScript-first architecture** 
+- 🧪 **Well Tested** (unit, component, E2E)
+
+## 🛠️ Tech Stack
+
+- **React 19.2** with TypeScript 5.9
+- **Vite 7.2**  
+- **Tailwind CSS 3.4** 
+- **Vitest** + **React Testing Library**
+- **Playwright** (E2E)
+- **ESLint** + Prettier
+
+## 🚀 Quick Start
 
 ### Prerequisites
-
-- Node.js (v18 or higher recommended)
+- Node.js 18+ 
 - npm or yarn
 
-### Installation
+### Installation & Running
 
 ```bash
-# Clone the repository
-git clone <repository-url>
-cd room-listing
-
 # Install dependencies
 npm install
-```
 
-### Development
-
-```bash
-# Start development server
+# Start development server (http://localhost:5173)
 npm run dev
-```
 
-The application will be available at `http://localhost:5173`
+# Run all tests
+npm run test:run
 
-### Build
+# Run E2E tests
+npm run test:e2e
 
-```bash
-# Type check and build for production
+# Build for production
 npm run build
 
 # Preview production build
 npm run preview
 ```
 
-### Code Quality
-
-```bash
-# Run ESLint
-npm run lint
-```
-
-## Project Architecture
-
-### Directory Structure
+## 📁 Project Structure
 
 ```
 src/
-├── components/          # React components
-│   ├── RoomList/       # Main room listing feature
+├── components/
+│   ├── RoomList/           # Main feature with sub-components
 │   │   ├── RoomList.tsx
-│   │   └── components/ # Sub-components (RoomCard, MediaViewer, etc.)
-│   └── common/         # Shared components (Skeleton, etc.)
-├── constants/          # App-wide constants (pagination, breakpoints)
-├── data/              # Static JSON data
-├── hooks/             # Custom React hooks (useInfiniteRooms)
-├── services/          # Business logic and data mapping
-├── types/             # TypeScript type definitions
-└── utils/             # Helper functions (formatters, mappers)
+│   │   └── components/     # RoomCard, MediaViewer, VariantCard, etc.
+│   ├── HotelHeader/
+│   └── common/             # Shared components (Skeleton)
+├── hooks/                  # Custom hooks (useInfiniteRooms)
+├── services/               # Business logic and data transformation
+│   ├── roomService.ts      # Data fetching interface
+│   ├── dataMapper.ts       # Raw data → domain models
+│   └── types.ts            # Service layer types
+├── types/                  # Domain models (Room, RoomVariant)
+├── utils/                  # Helper functions (formatters, mappers)
+├── constants/              # App configuration
+└── data/                   # Static JSON data
 ```
 
-### Key Architectural Patterns
+## 🏗️ Architecture & Design Decisions
 
-#### 1. Feature-Based Component Organization
-Components are organized by feature with nested sub-components:
+### 1. **Layered Architecture**
+- **UI components contain no business logic** 
+- **Services handle data shaping**
+- **Utils contain pure functions** 
+- **Hooks encapsulate reusable state logic** 
+
+### 2. **Service Layer Pattern**
+Separation of concerns with clear boundaries:
+```typescript
+// Service layer handles data orchestration
+roomService.ts → dataMapper.ts → Domain Models
 ```
-RoomList/
-├── RoomList.tsx           # Main component
-├── components/            # Feature-specific components
-│   ├── RoomCard.tsx
-│   ├── MediaViewer.tsx
-│   ├── ImageMedia.tsx
-│   └── VariantCard.tsx
-└── index.ts              # Barrel export
-```
 
-#### 2. Service Layer Pattern
-Business logic is separated from UI components:
-- `roomService.ts` - Data fetching interface
-- `dataMapper.ts` - Raw data transformation to domain models
-- Clean separation allows easy API integration in the future
-
-#### 3. Type-Safe Domain Models
-Strong typing throughout the application:
+### 3. **Type-Safe Domain Models**
+Strong typing prevents runtime errors:
 ```typescript
 interface Room {
   id: string;
@@ -117,103 +111,53 @@ interface Room {
 }
 ```
 
-#### 4. Custom Hooks for Complex Logic
-Reusable hooks encapsulate complex behavior:
-- `useInfiniteRooms` - Handles infinite scroll with Intersection Observer
 
-## Performance Optimizations
-
-### 1. Component Memoization
-Frequently rendered components use `React.memo()` to prevent unnecessary re-renders:
-- `RoomCard` - Memoized to avoid re-rendering when parent updates
-- `MediaViewer` - Prevents re-processing media arrays
-- `VariantCard` - Optimizes variant list rendering
-
-### 2. Infinite Scroll with Intersection Observer
-Instead of loading all rooms at once, we implement progressive loading:
-- Initial load: 10 rooms
-- Loads more as user scrolls (configurable page size)
-- Uses native Intersection Observer API for efficient scroll detection
-- 200px root margin for preemptive loading
-- Debounced loading with 400ms delay to prevent rapid triggers
+### 4. **Infinite Scroll Pagination**
+Efficiently loads rooms in chunks:
 
 ```typescript
 const observer = new IntersectionObserver(
   (entries) => {
-    if (entry.isIntersecting) {
-      // Load more rooms
+    if (entry.isIntersecting && !isLoading) {
+      loadMore(); // Load next page
     }
   },
-  {
-    rootMargin: '200px',  // Start loading before reaching bottom
-    threshold: 0.1,
-  }
+  { rootMargin: '200px', threshold: 0.1 }
 );
 ```
 
-### 3. Lazy Image Loading
-Images use native lazy loading to defer off-screen images:
-```tsx
-<img src={url} loading="lazy" />
+### ⚡ Performance Optimizations
+- **React.memo** for heavy components  
+- **useMemo** for optimizing media/variant processing  
+- **Lazy-loaded images** with `loading="lazy"`  
+- **Skeleton placeholders** to prevent layout shift  
+
+
+## 🧪 Testing Strategy
+- **Unit tests for formatters, helpers, and services** 
+- **Component tests with RTL (VariantCard)** 
+- **E2E smoke test with Playwright** 
+
+```bash
+npm run test          # Run all unit/component tests in watch mode
+npm run test:run      # Run all tests once
+npm run test:e2e      # Run Playwright E2E tests
 ```
 
-### 4. Skeleton Loading States
-Provides visual feedback while images load, improving perceived performance:
-- Skeleton placeholders shown until images load
-- Prevents layout shift (CLS optimization)
 
-### 5. Optimized Re-renders
-- `useMemo` for expensive computations (variant filtering, media processing)
-- Conditional rendering to avoid unnecessary DOM updates
-- Efficient state management with minimal re-render triggers
+## 🚧 Future Enhancements
 
-### 6. Code Splitting Ready
-- Vite's automatic code splitting for production builds
-- Dynamic imports can be added for route-based splitting
+If this were a production application, next steps would include:
 
-### 7. Build Optimizations
-- TypeScript project references for faster builds
-- Vite's optimized dependency pre-bundling
-- Tree-shaking for minimal bundle size
+- **API Integration**
+- **Filtering & Search** 
+- **Room comparison & favorites**
+- **Booking Flow**
+- **Virtual scrolling for large datasets**
 
-## Code Style Guidelines
-
-### TypeScript
-- Explicit return types on exported functions
-- Use `type` for unions/primitives, `interface` for objects
-- Avoid `any` - prefer `unknown` or proper types
-
-### React
-- Functional components with hooks
-- Props interfaces with `Props` suffix
-- Memoize components that render frequently
-
-### Imports
-- Use `@/` alias for all src imports
-- Group imports: external → internal → types
-- Prefer named exports for better refactoring
-
-### Formatting
-- 2-space indentation
-- Single quotes for JS/TS, double quotes for JSX
-- Semicolons required
-- Trailing commas in multiline structures
-- Spaces inside object braces
-
-## Future Enhancements
-
-- [ ] API integration (replace static JSON data)
-- [ ] Room filtering and search
-- [ ] Booking flow integration
-- [ ] User authentication
-- [ ] Favorites/wishlist functionality
-- [ ] Price comparison across dates
-- [ ] Virtual scrolling for very large datasets
-- [ ] Progressive Web App (PWA) support
-
-## Browser Support
+## 🌐 Browser Support
 
 - Modern browsers (Chrome, Firefox, Safari, Edge)
-- ES2020+ features required
-- Intersection Observer API required (widely supported)
+- ES2020+
+- Intersection Observer required
 
