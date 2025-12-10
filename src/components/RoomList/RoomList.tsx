@@ -1,7 +1,7 @@
 import { getRooms } from '@/services/roomService';
 import { useInfiniteRooms } from '@/hooks/useInfiniteRooms';
 import { PAGINATION } from '@/constants/ui';
-import { RoomCard } from './RoomCard';
+import { RoomCard } from './components';
 
 export function RoomList() {
   const rooms = getRooms();
