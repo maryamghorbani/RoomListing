@@ -92,6 +92,7 @@ function mapCapacity(room: RawRoom): string {
 }
 
 const rawRooms: RawRoom[] = rawData.rooms_by_serial_no?.[0]?.rooms ?? [];
+// replace with "const rawRooms: RawRoom[] = [];" to see the error state
 
 export const roomsFromSample: Room[] = rawRooms.map((room, index) => ({
     id: room.room_type_code ?? String(index),

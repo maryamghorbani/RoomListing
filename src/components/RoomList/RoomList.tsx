@@ -3,8 +3,27 @@ import { useInfiniteRooms } from "../../hooks/useInfiniteRooms";
 import { RoomCard } from "./RoomCard";
 
 export function RoomList() {
-  const { visibleRooms, hasMore, sentinelRef, isLoadingMore } =
+    const hasData = Array.isArray(roomsFromSample) && roomsFromSample.length > 0;
+    
+    const { visibleRooms, hasMore, sentinelRef, isLoadingMore } =
       useInfiniteRooms(roomsFromSample, 10);
+
+    if (!hasData) {
+        return (
+            <section className="mx-auto max-w-3xl py-6">
+                <h1 className="mb-6 text-2xl font-semibold">Room Listing</h1>
+
+                <div className="rounded-lg border border-red-300 bg-red-50 p-6 text-center shadow-sm">
+                    <div className="text-red-600 text-lg font-medium mb-2">
+                        ⚠️ Unable to load room data
+                    </div>
+                    <p className="text-red-700 text-sm">
+                        Please refresh the page or try again later.
+                    </p>
+                </div>
+            </section>
+        );
+    }
 
   return (
       <section className="mx-auto max-w-3xl py-6">
