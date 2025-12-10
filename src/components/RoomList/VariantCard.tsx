@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import type { RoomVariant } from '@/types/room';
+import { formatPrice } from '@/utils/formatters';
 
 type VariantCardProps = {
   variant: RoomVariant;
@@ -32,12 +33,12 @@ function VariantCardComponent({
           <div className="flex items-baseline gap-3">
             {variant.originalPrice && (
               <span className="text-sm text-slate-400 line-through">
-                RM{variant.originalPrice.toLocaleString()}
+                {formatPrice(variant.originalPrice)}
               </span>
             )}
 
             <span className="text-xl font-bold text-slate-900">
-              RM{variant.price.toLocaleString()}
+              {formatPrice(variant.price)}
             </span>
 
             {variant.discountPercent && (

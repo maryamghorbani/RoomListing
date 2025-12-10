@@ -7,24 +7,15 @@ import type {
   RawVariant,
   RawHotelDetails,
 } from './rawSampleTypes';
+import {
+  mapBedType,
+  formatCapacity,
+  calculateDiscountPercent,
+} from '@/utils';
 
 const rawData = raw as RawSample;
 
 export const hotelDetails: RawHotelDetails = rawData.hotel_details;
-
-function mapBedType(rawBed?: string | null): string {
-  if (!rawBed) return 'Bed';
-  switch (rawBed.toUpperCase()) {
-    case 'DOUBLE':
-      return 'Double bed';
-    case 'KING':
-      return 'King bed';
-    case 'TWIN':
-      return 'Twin bed';
-    default:
-      return rawBed;
-  }
-}
 
 // Media mapping logic: video first, then images
 function mapMedia(room: RawRoom): RoomMedia[] {
@@ -58,12 +49,10 @@ function mapVariant(v: RawVariant): RoomVariant {
 
   const originalPrice = tp?.total_price_rounded ?? tp?.total_price ?? undefined;
 
-  let discountPercent: number | undefined;
-  if (originalPrice && originalPrice > price) {
-    discountPercent = Math.round(
-      ((originalPrice - price) / originalPrice) * 100,
-    );
-  }
+  const discountPercent =
+    originalPrice && originalPrice > price
+      ? calculateDiscountPercent(originalPrice, price)
+      : undefined;
 
   const cancellationPolicy =
     v.cancellation_info?.free_cancel_description ??
@@ -81,22 +70,16 @@ function mapVariant(v: RawVariant): RoomVariant {
   };
 }
 
-function mapCapacity(room: RawRoom): string {
-  const cap = room.properties?.room_capacity;
-  const maxAdult = cap?.max_adult ?? cap?.max_occupancy;
-  if (maxAdult) {
-    return `Up to ${maxAdult} adults`;
-  }
-  return 'Up to 2 adults';
-}
-
 const rawRooms: RawRoom[] = rawData.rooms_by_serial_no?.[0]?.rooms ?? [];
 // replace with "const rawRooms: RawRoom[] = [];" to see the error state
 
 export const roomsFromSample: Room[] = rawRooms.map((room, index) => ({
   id: room.room_type_code ?? String(index),
   name: room.name,
-  capacity: mapCapacity(room),
+  capacity: formatCapacity(
+    room.properties?.room_capacity?.max_adult ?? undefined,
+    room.properties?.room_capacity?.max_occupancy ?? undefined,
+  ),
   bedType: mapBedType(room.properties?.bed_type),
   media: mapMedia(room),
   variants: (room.variants ?? []).map(mapVariant),
