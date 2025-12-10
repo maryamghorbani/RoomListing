@@ -15,7 +15,7 @@ export function ImageSlider({ images }: ImageSliderProps) {
   const current = images[index];
 
   return (
-    <div className="relative h-80 w-full overflow-hidden rounded-lg">
+    <div className="relative h-56 sm:h-64 md:h-72 lg:h-80 w-full overflow-hidden rounded-lg">
       <img
         src={current.url}
         alt={`Image ${index + 1} of ${images.length}`}

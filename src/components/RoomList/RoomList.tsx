@@ -12,8 +12,8 @@ export function RoomList() {
 
   if (!hasData) {
     return (
-      <section className="mx-auto max-w-3xl py-6">
-        <h1 className="mb-6 text-2xl font-semibold">Room Listing</h1>
+      <section className="mx-auto max-w-3xl py-4 sm:py-6">
+        <h1 className="mb-4 sm:mb-6 text-xl sm:text-2xl font-semibold">Room Listing</h1>
 
         <div className="rounded-lg border border-red-300 bg-red-50 p-6 text-center shadow-sm">
           <div className="text-red-600 text-lg font-medium mb-2">
@@ -28,8 +28,8 @@ export function RoomList() {
   }
 
   return (
-    <section className="mx-auto max-w-3xl py-6">
-      <h1 className="mb-6 text-2xl font-semibold">Room Listing</h1>
+    <section className="mx-auto max-w-3xl py-4 sm:py-6">
+      <h1 className="mb-4 sm:mb-6 text-xl sm:text-2xl font-semibold">Room Listing</h1>
 
       <ul className="space-y-4">
         {visibleRooms.map((room, index) => (

@@ -45,21 +45,21 @@ export function HotelHeader() {
       : '';
 
   return (
-    <header className="w-full bg-white mb-10">
-      <div className="mx-auto max-w-6xl px-4 pt-6">
-        <div className="overflow-hidden rounded-2xl shadow-sm">
+    <header className="w-full bg-white mb-6 md:mb-10">
+      <div className="mx-auto max-w-6xl px-3 sm:px-4 pt-4 sm:pt-6">
+        <div className="overflow-hidden rounded-lg sm:rounded-2xl shadow-sm">
           <img
             src={src}
             srcSet={srcSet || undefined}
-            className="w-full h-[420px] object-cover"
+            className="w-full h-48 sm:h-64 md:h-80 lg:h-[420px] object-cover"
             alt={hotelDetails.name}
           />
         </div>
       </div>
 
-      <div className="mx-auto max-w-6xl px-4 py-6">
-        <h1 className="text-2xl font-semibold">{hotelDetails.name}</h1>
-        <p className="text-slate-600">{location}</p>
+      <div className="mx-auto max-w-6xl px-3 sm:px-4 py-4 sm:py-6">
+        <h1 className="text-xl sm:text-2xl lg:text-3xl font-semibold">{hotelDetails.name}</h1>
+        <p className="text-sm sm:text-base text-slate-600">{location}</p>
 
         <div className="mt-3">
           <p className="leading-relaxed text-slate-700 text-sm">

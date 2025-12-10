@@ -48,7 +48,7 @@ export function VideoMedia({ url }: VideoMediaProps) {
   return (
     <div
       ref={containerRef}
-      className="relative h-80 w-full overflow-hidden rounded-lg bg-slate-100"
+      className="relative h-56 sm:h-64 md:h-72 lg:h-80 w-full overflow-hidden rounded-lg bg-slate-100"
     >
       {!isLoaded && <Skeleton className="absolute inset-0" />}
 

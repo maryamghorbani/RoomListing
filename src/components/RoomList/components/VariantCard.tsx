@@ -14,35 +14,35 @@ function VariantCardComponent({
   bedType,
 }: VariantCardProps) {
   return (
-    <div className="mt-4 rounded-2xl border border-emerald-500 bg-white shadow-sm overflow-hidden">
-      <div className="px-5 py-4 space-y-2">
+    <div className="mt-3 sm:mt-4 rounded-xl sm:rounded-2xl border border-emerald-500 bg-white shadow-sm overflow-hidden">
+      <div className="px-4 sm:px-5 py-3 sm:py-4 space-y-2">
         <div className="space-y-1">
-          <p className="text-base font-semibold text-slate-900">
+          <p className="text-sm sm:text-base font-semibold text-slate-900">
             {variant.name}
           </p>
 
           {bedType && (
-            <p className="text-sm text-slate-700">Double bed · {bedType}</p>
+            <p className="text-xs sm:text-sm text-slate-700">Double bed · {bedType}</p>
           )}
 
-          {capacity && <p className="text-sm text-slate-700">{capacity}</p>}
+          {capacity && <p className="text-xs sm:text-sm text-slate-700">{capacity}</p>}
         </div>
         <p className="text-xs text-slate-500">{variant.priceInfo}</p>
 
         <div className="pt-2 space-y-1">
-          <div className="flex items-baseline gap-3">
+          <div className="flex flex-wrap items-baseline gap-2 sm:gap-3">
             {variant.originalPrice && (
-              <span className="text-sm text-slate-400 line-through">
+              <span className="text-xs sm:text-sm text-slate-400 line-through">
                 {formatPrice(variant.originalPrice)}
               </span>
             )}
 
-            <span className="text-xl font-bold text-slate-900">
+            <span className="text-lg sm:text-xl font-bold text-slate-900">
               {formatPrice(variant.price)}
             </span>
 
             {variant.discountPercent && (
-              <span className="rounded-full bg-indigo-600 px-3 py-1 text-xs font-semibold text-white">
+              <span className="rounded-full bg-indigo-600 px-2 sm:px-3 py-0.5 sm:py-1 text-xs font-semibold text-white">
                 {variant.discountPercent}% off
               </span>
             )}
@@ -59,7 +59,7 @@ function VariantCardComponent({
 
       <button
         type="button"
-        className="block w-full bg-emerald-600 px-5 py-3 text-center text-sm font-semibold text-white hover:bg-emerald-700"
+        className="block w-full bg-emerald-600 px-4 sm:px-5 py-2.5 sm:py-3 text-center text-sm font-semibold text-white hover:bg-emerald-700 active:bg-emerald-800"
       >
         Select
       </button>

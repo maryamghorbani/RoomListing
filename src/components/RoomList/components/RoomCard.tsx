@@ -25,7 +25,7 @@ function RoomCardComponent({ room }: RoomCardProps) {
   }, [room.variants, isExpanded]);
 
   return (
-    <article className="mb-6 rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+    <article className="mb-4 sm:mb-6 rounded-lg sm:rounded-xl border border-slate-200 bg-white p-4 sm:p-6 shadow-sm">
       <MediaViewer media={room.media} alt={room.name} />
 
       <div id={variantsId} className="mt-4 space-y-3">

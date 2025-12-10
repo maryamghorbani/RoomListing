@@ -9,13 +9,6 @@ export const ANIMATION = {
   EXPAND_DURATION: 300,
 } as const;
 
-export const BREAKPOINTS = {
-  SM: 640,
-  MD: 768,
-  LG: 1024,
-  XL: 1280,
-} as const;
-
 export const TEXT = {
   DESCRIPTION_TRUNCATE_LENGTH: 220,
 } as const;

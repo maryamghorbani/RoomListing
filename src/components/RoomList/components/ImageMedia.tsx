@@ -15,7 +15,7 @@ export function ImageMedia({ images, alt }: ImageMediaProps) {
   if (!primary) return null;
 
   const containerBaseClass =
-    'relative h-80 w-full overflow-hidden rounded-lg bg-slate-100';
+    'relative h-56 sm:h-64 md:h-72 lg:h-80 w-full overflow-hidden rounded-lg bg-slate-100';
 
   if (images.length === 1) {
     return (
