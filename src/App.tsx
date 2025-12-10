@@ -1,5 +1,4 @@
-import { RoomList } from '@/components/RoomList';
-import { HotelHeader } from '@/components/HotelHeader';
+import { RoomList, HotelHeader } from '@/components';
 
 function App() {
   return (

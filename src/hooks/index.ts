@@ -1,0 +1,1 @@
+export { useInfiniteRooms } from './useInfiniteRooms';
