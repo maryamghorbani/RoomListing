@@ -1,44 +1,42 @@
-import { useState } from "react";
-import { Skeleton } from "../common/Skeleton";
-import type { RoomMedia } from "../../types/room";
-import { ImageSlider } from "./ImageSlider";
+import { useState } from 'react';
+import { Skeleton } from '../common/Skeleton';
+import type { RoomMedia } from '../../types/room';
+import { ImageSlider } from './ImageSlider';
 
 interface ImageMediaProps {
-    images: RoomMedia[];
-    alt?: string;
+  images: RoomMedia[];
+  alt?: string;
 }
 
 export function ImageMedia({ images, alt }: ImageMediaProps) {
-    const [isLoaded, setIsLoaded] = useState(false);
-    const primary = images[0];
+  const [isLoaded, setIsLoaded] = useState(false);
+  const primary = images[0];
 
-    if (!primary) return null;
+  if (!primary) return null;
 
-    const containerBaseClass =
-        "relative h-80 w-full overflow-hidden rounded-lg bg-slate-100";
+  const containerBaseClass =
+    'relative h-80 w-full overflow-hidden rounded-lg bg-slate-100';
 
-    if (images.length === 1) {
-        return (
-            <div className={containerBaseClass}>
-                {!isLoaded && (
-                    <Skeleton className="absolute inset-0" />
-                )}
-
-                <img
-                    src={primary.url}
-                    loading="lazy"
-                    onLoad={() => setIsLoaded(true)}
-                    onError={() => setIsLoaded(true)}
-                    className="h-full w-full object-cover"
-                    alt={alt ?? ""}
-                />
-            </div>
-        );
-    }
-
+  if (images.length === 1) {
     return (
-        <div className={containerBaseClass}>
-            <ImageSlider images={images} />
-        </div>
+      <div className={containerBaseClass}>
+        {!isLoaded && <Skeleton className="absolute inset-0" />}
+
+        <img
+          src={primary.url}
+          loading="lazy"
+          onLoad={() => setIsLoaded(true)}
+          onError={() => setIsLoaded(true)}
+          className="h-full w-full object-cover"
+          alt={alt ?? ''}
+        />
+      </div>
     );
+  }
+
+  return (
+    <div className={containerBaseClass}>
+      <ImageSlider images={images} />
+    </div>
+  );
 }

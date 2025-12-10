@@ -1,4 +1,4 @@
-export type MediaType = "video" | "image";
+export type MediaType = 'video' | 'image';
 
 export interface RoomMedia {
   type: MediaType;

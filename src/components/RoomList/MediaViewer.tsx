@@ -1,7 +1,7 @@
-import { memo } from "react";
-import type { RoomMedia } from "../../types/room";
-import { ImageMedia } from "./ImageMedia";
-import { VideoMedia } from "./VideoMedia";
+import { memo } from 'react';
+import type { RoomMedia } from '../../types/room';
+import { ImageMedia } from './ImageMedia';
+import { VideoMedia } from './VideoMedia';
 
 interface MediaViewerProps {
   media: RoomMedia[];
@@ -12,9 +12,9 @@ function MediaViewerComponent({ media, alt }: MediaViewerProps) {
   const primary = media[0];
   if (!primary) return null;
 
-  const images = media.filter((m) => m.type === "image");
+  const images = media.filter((m) => m.type === 'image');
 
-  if (primary.type === "image") {
+  if (primary.type === 'image') {
     return <ImageMedia images={images} alt={alt} />;
   }
 
