@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Skeleton } from '@/components/common/Skeleton';
+import { MEDIA } from '@/constants/ui';
 
 interface VideoMediaProps {
   url: string;
@@ -21,7 +22,7 @@ export function VideoMedia({ url }: VideoMediaProps) {
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
-        if (!entry || !videoEl) return;
+        if (!entry) return;
 
         if (entry.isIntersecting) {
           if (!videoEl.src) {
@@ -32,13 +33,15 @@ export function VideoMedia({ url }: VideoMediaProps) {
           videoEl.pause();
         }
       },
-      { threshold: 0.5 },
+      { threshold: MEDIA.VIDEO_INTERSECTION_THRESHOLD },
     );
 
     observer.observe(containerEl);
     return () => {
       observer.disconnect();
-      videoEl.pause();
+      if (videoEl) {
+        videoEl.pause();
+      }
     };
   }, [url]);
 

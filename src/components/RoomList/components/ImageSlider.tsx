@@ -18,7 +18,7 @@ export function ImageSlider({ images }: ImageSliderProps) {
     <div className="relative h-80 w-full overflow-hidden rounded-lg">
       <img
         src={current.url}
-        alt=""
+        alt={`Image ${index + 1} of ${images.length}`}
         className="h-full w-full object-cover"
         loading="lazy"
       />
@@ -26,14 +26,16 @@ export function ImageSlider({ images }: ImageSliderProps) {
       <button
         type="button"
         onClick={goPrev}
-        className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/40 px-2 py-1 text-sm text-white"
+        aria-label="Previous image"
+        className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/40 px-2 py-1 text-sm text-white hover:bg-black/60"
       >
         ‹
       </button>
       <button
         type="button"
         onClick={goNext}
-        className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/40 px-2 py-1 text-sm text-white"
+        aria-label="Next image"
+        className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/40 px-2 py-1 text-sm text-white hover:bg-black/60"
       >
         ›
       </button>
@@ -44,6 +46,8 @@ export function ImageSlider({ images }: ImageSliderProps) {
             key={img.url}
             type="button"
             onClick={() => setIndex(i)}
+            aria-label={`Go to image ${i + 1}`}
+            aria-current={i === index ? 'true' : 'false'}
             className={`h-2 w-2 rounded-full ${
               i === index ? 'bg-white' : 'bg-white/50'
             }`}

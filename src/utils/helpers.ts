@@ -14,7 +14,8 @@ export function mapBedType(rawBed?: string | null): string {
 export function formatCapacity(
   maxAdult?: number,
   maxOccupancy?: number,
-): string {
-  const count = maxAdult ?? maxOccupancy ?? 2;
+): string | undefined {
+  const count = maxAdult ?? maxOccupancy;
+  if (!count) return undefined;
   return `Up to ${count} adults`;
 }

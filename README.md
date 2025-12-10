@@ -217,6 +217,3 @@ Provides visual feedback while images load, improving perceived performance:
 - ES2020+ features required
 - Intersection Observer API required (widely supported)
 
-## License
-
-[Your License Here]

@@ -2,6 +2,7 @@ import { memo, useMemo, useState } from 'react';
 import type { Room } from '@/types/room';
 import { MediaViewer } from './MediaViewer';
 import { VariantCard } from './VariantCard';
+import { ROOM_CARD } from '@/constants/ui';
 
 interface RoomCardProps {
   room: Room;
@@ -14,12 +15,12 @@ function RoomCardComponent({ room }: RoomCardProps) {
 
   const { visibleVariants, hasMoreVariants } = useMemo(() => {
     const total = room.variants.length;
-    const hasMore = total > 2;
+    const hasMore = total > ROOM_CARD.INITIAL_VARIANTS_SHOWN;
 
     return {
       hasMoreVariants: hasMore,
       visibleVariants:
-        isExpanded || !hasMore ? room.variants : room.variants.slice(0, 2),
+        isExpanded || !hasMore ? room.variants : room.variants.slice(0, ROOM_CARD.INITIAL_VARIANTS_SHOWN),
     };
   }, [room.variants, isExpanded]);
 

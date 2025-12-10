@@ -1,6 +1,7 @@
 import { getHotelDetails } from '@/services/roomService';
 import { useEffect, useState } from 'react';
 import { APP_NAME, DEFAULT_PAGE_TITLE } from '@/constants/app';
+import { TEXT } from '@/constants/ui';
 
 export function HotelHeader() {
   const hotelDetails = getHotelDetails();
@@ -19,7 +20,8 @@ export function HotelHeader() {
   const [expanded, setExpanded] = useState(false);
 
   const description = hotelDetails.description ?? '';
-  const shortText = description.slice(0, 220);
+  const shouldTruncate = description.length > TEXT.DESCRIPTION_TRUNCATE_LENGTH;
+  const displayText = expanded || !shouldTruncate ? description : description.slice(0, TEXT.DESCRIPTION_TRUNCATE_LENGTH) + '...';
 
   if (!img) return null;
 
@@ -59,21 +61,19 @@ export function HotelHeader() {
         <h1 className="text-2xl font-semibold">{hotelDetails.name}</h1>
         <p className="text-slate-600">{location}</p>
 
-        <p
-          className={`mt-3 leading-relaxed text-slate-700 text-sm 
-                        transition-all duration-300 ease-in-out 
-                        overflow-hidden 
-                        ${expanded ? 'max-h-[800px] opacity-100' : 'max-h-[60px] opacity-90'}
-                    `}
-        >
-          {expanded ? description : shortText + '...'}
-          <button
-            onClick={() => setExpanded((p) => !p)}
-            className="ml-2 text-emerald-700 font-medium hover:underline"
-          >
-            {expanded ? 'Show less' : 'Show more'}
-          </button>
-        </p>
+        <div className="mt-3">
+          <p className="leading-relaxed text-slate-700 text-sm">
+            {displayText}
+          </p>
+          {shouldTruncate && (
+            <button
+              onClick={() => setExpanded((p) => !p)}
+              className="mt-1 text-emerald-700 font-medium hover:underline text-sm"
+            >
+              {expanded ? 'Show less' : 'Show more'}
+            </button>
+          )}
+        </div>
       </div>
     </header>
   );

@@ -15,3 +15,15 @@ export const BREAKPOINTS = {
   LG: 1024,
   XL: 1280,
 } as const;
+
+export const TEXT = {
+  DESCRIPTION_TRUNCATE_LENGTH: 220,
+} as const;
+
+export const MEDIA = {
+  VIDEO_INTERSECTION_THRESHOLD: 0.5,
+} as const;
+
+export const ROOM_CARD = {
+  INITIAL_VARIANTS_SHOWN: 2,
+} as const;
