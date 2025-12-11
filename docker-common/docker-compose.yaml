@@ -1,0 +1,24 @@
+---
+services:
+  proxy:
+    image: traefik:latest
+    ports:
+      - '443:443'
+      - '80:80'
+      #  traefik dashbord
+      - '8080:8080'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./dynamic-traefik.toml:/dynamic-traefik.toml
+      - ./traefik.toml:/traefik.toml
+      - ./certs:/certs
+    networks:
+      - unravel
+    restart: always
+
+networks:
+  unravel:
+    name: livemys.com
+    ipam:
+      config:
+        - subnet: 10.198.0.0/16

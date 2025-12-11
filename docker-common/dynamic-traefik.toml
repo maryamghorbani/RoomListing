@@ -1,0 +1,9 @@
+[http.middlewares]
+  [http.middlewares.unravel-redirectscheme.redirectScheme]
+    scheme = "https"
+
+[tls.stores]
+  [tls.stores.default]
+    [tls.stores.default.defaultCertificate]
+      certFile = "/certs/fullchain.pem"
+      keyFile  = "/certs/privatekey.pem"
