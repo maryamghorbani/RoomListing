@@ -1,0 +1,28 @@
+services:
+  fe:
+    build:
+      context: ./fe
+      dockerfile: Dockerfile
+    command: npm run dev
+    volumes:
+      - ./fe:/app:delegated
+      - /app/node_modules
+    environment:
+      HISTFILE: /app/.bash_history
+    restart: unless-stopped
+    networks:
+      default:
+        aliases:
+          - fe
+    labels:
+      - "traefik.http.routers.fe-insecure.rule=Host(`unravel.dev.livemys.com`)"
+      - "traefik.http.routers.fe-insecure.entrypoints=web"
+      - "traefik.http.routers.fe-insecure.middlewares=unravel-redirectscheme@file"
+      - "traefik.http.routers.fe-secure.rule=Host(`unravel.dev.livemys.com`)"
+      - "traefik.http.routers.fe-secure.entrypoints=web,web-secure"
+      - "traefik.http.routers.fe-secure.tls=true"
+
+networks:
+  default:
+    name: livemys.com  # managed by docker-common
+    external: true
