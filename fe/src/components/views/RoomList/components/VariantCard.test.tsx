@@ -1,10 +1,10 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { VariantCard } from './VariantCard';
+import { VariantCard } from './VariantCard.tsx';
 import {
   mockVariantWithDiscount,
   mockVariantNoDiscount,
-} from '@/__tests__/mocks/roomData';
+} from '@/__tests__/mocks/roomData.ts';
 
 describe('VariantCard', () => {
   it('renders variant name and price correctly', () => {

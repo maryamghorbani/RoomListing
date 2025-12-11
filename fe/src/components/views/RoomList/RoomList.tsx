@@ -1,6 +1,6 @@
-import { getRooms } from '@/services/roomService';
-import { useInfiniteRooms } from '@/hooks/useInfiniteRooms';
-import { PAGINATION } from '@/constants/ui';
+import { getRooms } from '@/services/roomService.ts';
+import { useInfiniteRooms } from '@/hooks/useInfiniteRooms.ts';
+import { PAGINATION } from '@/constants/ui.ts';
 import { RoomCard } from './components';
 
 export function RoomList() {

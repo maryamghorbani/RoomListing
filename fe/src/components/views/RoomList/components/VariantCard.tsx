@@ -1,6 +1,6 @@
 import { memo } from 'react';
-import type { RoomVariant } from '@/types/room';
-import { formatPrice } from '@/utils/formatters';
+import type { RoomVariant } from '@/types/room.ts';
+import { formatPrice } from '@/utils';
 
 type VariantCardProps = {
   variant: RoomVariant;

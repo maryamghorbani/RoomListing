@@ -1,8 +1,8 @@
 import { memo, useMemo, useState } from 'react';
-import type { Room } from '@/types/room';
-import { MediaViewer } from './MediaViewer';
-import { VariantCard } from './VariantCard';
-import { ROOM_CARD } from '@/constants/ui';
+import type { Room } from '@/types/room.ts';
+import { MediaViewer } from './MediaViewer.tsx';
+import { VariantCard } from './VariantCard.tsx';
+import { ROOM_CARD } from '@/constants/ui.ts';
 
 interface RoomCardProps {
   room: Room;

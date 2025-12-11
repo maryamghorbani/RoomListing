@@ -1,7 +1,7 @@
 import { memo } from 'react';
-import type { RoomMedia } from '@/types/room';
-import { ImageMedia } from './ImageMedia';
-import { VideoMedia } from './VideoMedia';
+import type { RoomMedia } from '@/types/room.ts';
+import { ImageMedia } from './ImageMedia.tsx';
+import { VideoMedia } from './VideoMedia.tsx';
 
 interface MediaViewerProps {
   media: RoomMedia[];

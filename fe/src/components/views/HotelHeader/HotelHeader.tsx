@@ -1,7 +1,7 @@
-import { getHotelDetails } from '@/services/roomService';
+import { getHotelDetails } from '@/services/roomService.ts';
 import { useEffect, useState } from 'react';
-import { APP_NAME, DEFAULT_PAGE_TITLE } from '@/constants/app';
-import { TEXT } from '@/constants/ui';
+import { APP_NAME, DEFAULT_PAGE_TITLE } from '@/constants/app.ts';
+import { TEXT } from '@/constants/ui.ts';
 
 export function HotelHeader() {
   const hotelDetails = getHotelDetails();

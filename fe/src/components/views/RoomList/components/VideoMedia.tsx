@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { Skeleton } from '@/components/common/Skeleton';
-import { MEDIA } from '@/constants/ui';
+import { Skeleton } from '@/components/common/Skeleton.tsx';
+import { MEDIA } from '@/constants/ui.ts';
 
 interface VideoMediaProps {
   url: string;
