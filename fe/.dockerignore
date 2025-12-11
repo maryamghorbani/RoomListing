@@ -1,0 +1,41 @@
+node_modules
+**/node_modules
+
+# Build output
+build
+dist
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# OS / editor files
+.DS_Store
+*.swp
+*.swo
+*.tmp
+
+# Git
+.git
+.gitignore
+
+# Local tooling
+.idea
+.vscode
+.eslintcache
+
+# Docker
+Dockerfile*
+docker-compose*
+
+
+!package.json
+!package-lock.json
+!pnpm-lock.yaml
