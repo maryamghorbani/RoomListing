@@ -3,6 +3,6 @@ import { defineConfig } from '@playwright/test';
 export default defineConfig({
   testDir: './tests/e2e',
   use: {
-    baseURL: 'http://localhost:5174',
+    baseURL: 'http://fe:5173',
   },
 });

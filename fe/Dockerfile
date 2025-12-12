@@ -12,8 +12,10 @@ WORKDIR /app
 
 RUN apt-get -y update && \
     apt-get install -y --no-install-recommends \
-    ca-certificates gettext git locales python3-pip python3-requests pipx rsync && \
+    ca-certificates gettext git locales curl wget && \
     locale-gen en_US.UTF-8 && \
+    # Dependencies for playwright
+    npx playwright install-deps && \
     apt clean && \
     find /usr/share/man /usr/share/locale /usr/share/doc -type f -delete && \
     rm -rf /var/lib/apt/lists/*
@@ -28,7 +30,8 @@ RUN grep -q -w 1000 /etc/group || groupadd --gid 1000 node && \
 USER node
 
 ENV PATH=/home/node/.local/bin:$PATH
-RUN #pipx install pre-commit && pipx upgrade pre-commit
+
+RUN npx playwright install
 
 COPY --chown=node package.json package-lock.json /app/
 RUN npm install --loglevel=error

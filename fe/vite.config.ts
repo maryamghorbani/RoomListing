@@ -6,7 +6,7 @@ import path from 'path';
 export default defineConfig({
   server: {
     host: true,
-    allowedHosts: ['.livemys.com'],
+    allowedHosts: ['.livemys.com', 'fe'],
   },
   plugins: [react()],
   resolve: {

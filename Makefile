@@ -29,6 +29,7 @@ test:
 
 test-e2e:
 	@echo "Running tests for all services..."
+	$(MAKE) start
 	@for service in $(SERVICES); do \
 		docker compose run --rm $$service npm run test:e2e; \
 	done
