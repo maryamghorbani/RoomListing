@@ -7,7 +7,7 @@ I aim to live project before you review, the project, so you can check it out he
 
 
 ### Steps to proceed on local machine:
-1. Run `docker-common`. # only first time
+1. Run `docker-common` [more info](./docker-common/README.md). # only first time
     ```bash
     cd docker-common
     docker compose up -d 
