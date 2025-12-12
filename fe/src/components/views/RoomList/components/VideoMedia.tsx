@@ -19,6 +19,15 @@ export function VideoMedia({ url }: VideoMediaProps) {
     videoEl.muted = true;
     videoEl.playsInline = true;
 
+    // Pause all other videos when this one starts playing
+    const handlePlay = () => {
+      document.querySelectorAll('video').forEach((video) => {
+        if (video !== videoEl && !video.paused) {
+          video.pause();
+        }
+      });
+    };
+
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
@@ -36,12 +45,13 @@ export function VideoMedia({ url }: VideoMediaProps) {
       { threshold: MEDIA.VIDEO_INTERSECTION_THRESHOLD },
     );
 
+    videoEl.addEventListener('play', handlePlay);
     observer.observe(containerEl);
+
     return () => {
+      videoEl.removeEventListener('play', handlePlay);
       observer.disconnect();
-      if (videoEl) {
-        videoEl.pause();
-      }
+      videoEl.pause();
     };
   }, [url]);
 
