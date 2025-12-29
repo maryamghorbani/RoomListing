@@ -3,7 +3,7 @@
 
 ## Super Quick
 
-I aim to live project before you review, the project, so you can check it out here: [Unravel Live](https://livemys.com).
+I aim to live project before you review, the project, so you can check it out here: [Live](https://livemys.com).
 
 
 ### Steps to proceed on local machine:
